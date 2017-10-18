@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="102dp"
+    android:layout_height="wrap_content"
+    android:background="#eaeaea"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/main_popup_1"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:text="搜索书籍    "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/main_popup_2"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:text="添加好友"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/main_popup_3"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:text="扫一扫"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/main_popup_4"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:text="帮助"
+        android:textSize="18sp" />
+
+</LinearLayout>

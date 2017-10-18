@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eaeaea"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/news_xiaoxi"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:drawableEnd="@drawable/draw_right"
+        android:drawableStart="@drawable/xiaoxi"
+        android:gravity="center_vertical"
+        android:text="消息"
+        android:textSize="22sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eaeaea" />
+
+    <TextView
+        android:id="@+id/news_notice"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:drawableEnd="@drawable/draw_right"
+        android:drawableStart="@drawable/tongzhi"
+        android:gravity="center_vertical"
+        android:text="通知"
+        android:textSize="22sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eaeaea" />
+
+    <TextView
+        android:id="@+id/news_pinglun"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:drawableEnd="@drawable/draw_right"
+        android:drawableStart="@drawable/pinglun"
+        android:gravity="center_vertical"
+        android:text="评论"
+        android:textSize="22sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eaeaea" />
+
+</LinearLayout>

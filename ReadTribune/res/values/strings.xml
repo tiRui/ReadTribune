@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ReadTribune</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="txt_main">mainpager</string>
+    <string name="txt_tribune">tribunepager</string>
+    <string name="txt_news">newspager</string>
+    <string name="txt_own">ownpager</string>
+    <string name="txt_menu">menupager</string>
+
+</resources>
