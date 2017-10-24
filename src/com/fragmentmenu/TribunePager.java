@@ -3,9 +3,12 @@ package com.fragmentmenu;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.datamodel.tribuneData;
+import com.functionactivity.TribuneItem;
 import com.readtribune.R;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,6 +27,8 @@ public class TribunePager extends Fragment {
 
 	private ListView mlistview;
 	private MyListAdapter listAdapter;
+	public final static String VAL_KEY = "com.TribunePager.key";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -35,21 +42,36 @@ public class TribunePager extends Fragment {
 		mlistview = (ListView) v.findViewById(R.id.tribune_listview);
 		listAdapter = new MyListAdapter();
 		mlistview.setAdapter(listAdapter);
+		mlistview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				tribuneData mTribuneData = new tribuneData();
+				mTribuneData = (tribuneData) listAdapter.getItem(position);
+				Bundle bundel = new Bundle();
+				bundel.putParcelable(VAL_KEY, mTribuneData);
+				Intent intent = new Intent(getActivity(),TribuneItem.class);
+				intent.putExtras(bundel);
+				startActivity(intent);
+			}
+		});
 		return v;
 	};
-	
-	private class MyListAdapter extends BaseAdapter{
-        private List<tribuneData> triDatas = new ArrayList<tribuneData>();
-		public MyListAdapter(){
+
+	private class MyListAdapter extends BaseAdapter {
+		private List<tribuneData> triDatas = new ArrayList<tribuneData>();
+
+		public MyListAdapter() {
 			super();
 			for (int i = 0; i < 20; i++) {
 				tribuneData da = new tribuneData();
-				da.setTribuneTitle("#标题"+ i);
+				da.setTribuneTitle("#标题" + i);
 				da.setTribuneImage(R.drawable.ic_launcher);
-				da.setTribuneAthor("#作者"+ i);
+				da.setTribuneAthor("#作者" + i);
 				triDatas.add(da);
 			}
 		}
+
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
@@ -82,32 +104,8 @@ public class TribunePager extends Fragment {
 			tri_author.setText(triDatas.get(position).getTribuneAthor());
 			return convertView;
 		}
-		
 	}
-	public class tribuneData{
-		private String tribuneTitle;
-		private int tribuneImage;
-		private String tribuneAthor;
 
-		public String getTribuneTitle() {
-			return tribuneTitle;
-		}
-		public void setTribuneTitle(String tribuneTitle) {
-			this.tribuneTitle = tribuneTitle;
-		}
-		public int getTribuneImage() {
-			return tribuneImage;
-		}
-		public void setTribuneImage(int tribuneImage) {
-			this.tribuneImage = tribuneImage;
-		}
-		public String getTribuneAthor() {
-			return tribuneAthor;
-		}
-		public void setTribuneAthor(String tribuneAthor) {
-			this.tribuneAthor = tribuneAthor;
-		}
-	}
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub

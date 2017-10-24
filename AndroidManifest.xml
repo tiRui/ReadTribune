@@ -29,6 +29,14 @@
             android:name="com.functionactivity.MoreTypeShow"
             android:launchMode="singleTask" >
         </activity>
+        <activity
+            android:name="com.functionactivity.SingleDataShow"
+            android:launchMode="singleTask" >
+        </activity>
+                <activity
+            android:name="com.functionactivity.TribuneItem"
+            android:launchMode="singleTask" >
+        </activity>
     </application>
 
 </manifest>

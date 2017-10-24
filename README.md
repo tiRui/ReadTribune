@@ -1,2 +1,0 @@
-# ReadTribune
-android app

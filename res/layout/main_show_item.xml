@@ -21,7 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:ellipsize="end"
+            android:maxEms="6"
+            android:singleLine="true"
             android:text="标题"
             android:textSize="22sp" />
 
@@ -30,16 +32,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:gravity="center"
+            android:ellipsize="end"
+            android:maxEms="12"
+            android:maxLines="2"
+            android:singleLine="false"
             android:text="描述"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/main_show_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:ellipsize="end"
+            android:maxEms="6"
+            android:singleLine="true"
             android:text="作者"
             android:textSize="14sp" />
     </LinearLayout>

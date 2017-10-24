@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/tribune_item_listview_item_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/tribune_item_listview_item_use_head_"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tribune_item_listview_item_use_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="楼主0001"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tribune_item_listview_item_use_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017-10-22"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tribune_item_listview_item_use_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="1楼"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView 
+            android:id="@+id/tribune_item_listview_item_show_content"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:text="评论内容显示"
+            android:layout_below="@id/tribune_item_listview_item_linear"/>
+        
+</RelativeLayout>

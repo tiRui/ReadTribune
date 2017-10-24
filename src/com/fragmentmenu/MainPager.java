@@ -7,6 +7,7 @@ import com.datamodel.MyOwnAdapter;
 import com.datamodel.showData;
 import com.functionactivity.MoreContentShow;
 import com.functionactivity.MoreTypeShow;
+import com.functionactivity.SingleDataShow;
 import com.readtribune.R;
 
 import android.app.ActionBar;
@@ -27,6 +28,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -46,12 +49,16 @@ public class MainPager extends Fragment implements OnClickListener {
 	private MyOwnAdapter gvAdapter;
 	private PopupWindow minPopupWin;
 	private View mainView;
+	private TextView show_more;
+	public final static String KEY = "single.data.key";
 	private LinearLayout main_type_show_1, main_type_show_2, main_type_show_3, main_type_show_4, main_type_show_5,
 			main_type_show_6, main_type_show_7, main_type_show_more;
 	private int[] showimages = new int[] { R.drawable.main_show_1, R.drawable.main_show_2, R.drawable.main_show_3,
 			R.drawable.main_show_4 };
 	private String[] titles = new String[] { "书名1", "书名2", "书名3", "书名4号" };
-	private String[] descris = new String[] { "描述1", "描述2", "描述3", "描述4" };
+	private String[] descris = new String[] {
+			"描述和翻滚拉黑的拉黑凤凰我哈佛阿红豪华房火箭佛啊吼吼你批发能打动怕大盘爬到我打完大大无多大污染范围的阿发达瓦大打塔防挨打绕多所发无多打完大无大多哇多阿达瓦多啊大武当阿瓦达无多爱的挖到大武当哇大无多哇吊袜带哇大无大无多爱我的哇大无大无大无大无多我打的",
+			"描述2", "描述3", "描述4" };
 	private String[] authors = new String[] { "作者1", "作者2", "作者3", "作者4" };
 	private int[] images = new int[] { R.drawable.advert_1, R.drawable.advert_2, R.drawable.advert_3,
 			R.drawable.advert_4, R.drawable.advert_5 };
@@ -130,6 +137,22 @@ public class MainPager extends Fragment implements OnClickListener {
 		gvAdapter = new MyOwnAdapter(showimages, titles, descris, authors, getActivity());
 		gridview.setFocusable(false);
 		gridview.setAdapter(gvAdapter);
+		gridview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				// TODO Auto-generated method stub
+				showData data = new showData();
+				data = (showData) gvAdapter.getItem(position);
+				Bundle bundle = new Bundle();
+				bundle.putParcelable(KEY, data);
+				Intent intent = new Intent(getActivity(), SingleDataShow.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
+		show_more = (TextView) mainView.findViewById(R.id.main_show_txt_3);
+		show_more.setOnClickListener(this);
 		return mainView;
 	}
 
@@ -152,137 +175,29 @@ public class MainPager extends Fragment implements OnClickListener {
 		main_type_show_more.setOnClickListener(this);
 	}
 
-	// public class myOwnAdapter extends BaseAdapter {
-	//
-	// private Context context;
-	// private List<showData> showDatas = new ArrayList<showData>();
-	//
-	// public myOwnAdapter(int[] images, String[] titles, String[] descris,
-	// String[] authors, Context context) {
-	// super();
-	// this.context = context;
-	// for (int i = 0; i < authors.length; i++) {
-	// showData showdata = new showData();
-	// showdata.setImg(images[i]);
-	// showdata.setTitle(titles[i]);
-	// showdata.setWord(descris[i]);
-	// showdata.setAuthor(authors[i]);
-	// showDatas.add(showdata);
-	// }
-	//
-	// }
-	//
-	// @Override
-	// public int getCount() {
-	// // TODO Auto-generated method stub
-	// return showDatas.size();
-	// }
-	//
-	// @Override
-	// public Object getItem(int position) {
-	// // TODO Auto-generated method stub
-	// return showDatas.get(position);
-	// }
-	//
-	// @Override
-	// public long getItemId(int position) {
-	// // TODO Auto-generated method stub
-	// return position;
-	// }
-	//
-	// @Override
-	// public View getView(int position, View convertView, ViewGroup parent) {
-	// // TODO Auto-generated method stub
-	// if (convertView == null) {
-	// convertView =
-	// LayoutInflater.from(getActivity()).inflate(R.layout.main_show_item,
-	// null);
-	// }
-	// showData showda = showDatas.get(position);
-	// ImageView img = (ImageView) convertView.findViewById(R.id.main_show_img);
-	// img.setImageResource(showda.getImg());
-	// TextView txt_title = (TextView)
-	// convertView.findViewById(R.id.main_show_title);
-	// txt_title.setText(showda.getTitle());
-	// TextView txt_descri = (TextView)
-	// convertView.findViewById(R.id.main_show_descr);
-	// txt_descri.setText(showda.getWord());
-	// TextView txt_author = (TextView)
-	// convertView.findViewById(R.id.main_show_author);
-	// txt_author.setText(showda.getAuthor());
-	// return convertView;
-	// }
-	//
-	// }
-
 	private class ViewPagerAdapter extends PagerAdapter {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mImageView.size();
 		}
 
 		@Override
 		public boolean isViewFromObject(View arg0, Object arg1) {
-			// TODO Auto-generated method stub
 			return arg0 == arg1;
 		}
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			// TODO Auto-generated method stub
 			container.removeView(mImageView.get(position));
 		}
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
-			// TODO Auto-generated method stub
 			container.addView(mImageView.get(position));
 			return mImageView.get(position);
 		}
 	}
-
-	// public class showData {
-	//
-	// private int Img;
-	// private String Title;
-	// private String Word;
-	// private String Author;
-	//
-	// public int getImg() {
-	// return Img;
-	// }
-	//
-	// public void setImg(int img) {
-	// Img = img;
-	// }
-	//
-	// public String getTitle() {
-	// return Title;
-	// }
-	//
-	// public void setTitle(String title) {
-	// Title = title;
-	// }
-	//
-	// public String getWord() {
-	// return Word;
-	// }
-	//
-	// public void setWord(String word) {
-	// Word = word;
-	// }
-	//
-	// public String getAuthor() {
-	// return Author;
-	// }
-	//
-	// public void setAuthor(String author) {
-	// Author = author;
-	// }
-	//
-	// }
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -308,8 +223,6 @@ public class MainPager extends Fragment implements OnClickListener {
 		View mView = LayoutInflater.from(getActivity()).inflate(R.layout.mian_popupwindow_min, null);
 		minPopupWin = new PopupWindow(mView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
 				true);
-		// minPopupWin.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-		// minPopupWin.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
 		minPopupWin.setContentView(mView);
 		TextView mian_minpopup_1 = (TextView) mView.findViewById(R.id.main_popup_1);
 		TextView mian_minpopup_2 = (TextView) mView.findViewById(R.id.main_popup_2);
@@ -334,15 +247,12 @@ public class MainPager extends Fragment implements OnClickListener {
 		case R.id.main_popup_1:
 			minPopupWin.dismiss();
 			break;
-
 		case R.id.main_popup_2:
 			minPopupWin.dismiss();
 			break;
-
 		case R.id.main_popup_3:
 			minPopupWin.dismiss();
 			break;
-
 		case R.id.main_popup_4:
 			minPopupWin.dismiss();
 			break;
@@ -350,41 +260,37 @@ public class MainPager extends Fragment implements OnClickListener {
 			Intent intent1_1 = new Intent(getActivity(), MoreContentShow.class);
 			startActivity(intent1_1);
 			break;
-
 		case R.id.main_lin_1_2:
 			Intent intent1_2 = new Intent(getActivity(), MoreContentShow.class);
 			startActivity(intent1_2);
 			break;
-			
 		case R.id.main_lin_1_3:
 			Intent intent1_3 = new Intent(getActivity(), MoreContentShow.class);
 			startActivity(intent1_3);
 			break;
-			
 		case R.id.main_lin_1_4:
 			Intent intent1_4 = new Intent(getActivity(), MoreContentShow.class);
 			startActivity(intent1_4);
 			break;
-			
 		case R.id.main_lin_2_1:
 			Intent intent2_1 = new Intent(getActivity(), MoreContentShow.class);
 			startActivity(intent2_1);
 			break;
-			
 		case R.id.main_lin_2_2:
 			Intent intent2_2 = new Intent(getActivity(), MoreContentShow.class);
 			startActivity(intent2_2);
 			break;
-			
 		case R.id.main_lin_2_3:
 			Intent intent2_3 = new Intent(getActivity(), MoreContentShow.class);
 			startActivity(intent2_3);
 			break;
-			
 		case R.id.main_lin_2_4:
 			Intent intent2_4 = new Intent(getActivity(), MoreTypeShow.class);
 			startActivity(intent2_4);
 			break;
+		case R.id.main_show_txt_3:
+			Intent intent_show_more = new Intent(getActivity(), MoreContentShow.class);
+			startActivity(intent_show_more);
 		default:
 			break;
 		}
@@ -399,14 +305,12 @@ public class MainPager extends Fragment implements OnClickListener {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				while (!isStop) {
 					try {
 						Thread.sleep(3000);
 						currentItem = (currentItem + 1) % images.length;
 						myHandler.sendEmptyMessage(0);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -417,14 +321,12 @@ public class MainPager extends Fragment implements OnClickListener {
 
 	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		isStop = true;
 	}
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		myHandler.removeCallbacksAndMessages(null);
 	}
